@@ -1,13 +1,14 @@
 import {  Environment, Html, PresentationControls, Sparkles, useGLTF } from '@react-three/drei'
 import { useFrame, useThree } from '@react-three/fiber';
 import gsap from 'gsap';
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import Background from './Background';
 
 export default function Experience()
 {
     const [ width, setWidth ] = useState()
     const [ isOpen, setIsOpen ] = useState(false)
+    const HtmlRef = useRef()
 
     const macbook = useGLTF('https://vazxmixjsiawhamofees.supabase.co/storage/v1/object/public/models/macbook/model.gltf')
     const camera = useThree((state) => state.camera)
@@ -73,7 +74,8 @@ export default function Experience()
 
     useEffect(() =>
     {
-        gsap.to('.htmlScreen iframe', {visibility: 'hidden'})
+        if (HtmlRef.current)
+            gsap.to('.htmlScreen iframe', {visibility: 'hidden'})
     }, [])
 
     // Display websites depending on
@@ -129,6 +131,7 @@ export default function Experience()
                     onMouseOut={() => console.log('entered')}
                 />
                 <Html
+                    ref={HtmlRef}
                     transform
                     wrapperClass='htmlScreen'
                     distanceFactor={1.17}
