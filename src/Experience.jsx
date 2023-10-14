@@ -88,8 +88,6 @@ export default function Experience()
 
         if(window.innerWidth < 800)
             window.location.replace('https://hicham-zaadla.vercel.app/');
-        else
-            window.location.replace('https://3d-zaadla.vercel.app/');
     }, [width])
 
     return <>
