@@ -102,7 +102,6 @@ export default function Experience()
             count={50}
         />
         <PresentationControls
-            global
             rotation={[0.13, 0, 0]}
             polar={[-0.2, 0.2]}
             azimuth={[-0.2, 0.2]}
