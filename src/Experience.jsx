@@ -76,7 +76,7 @@ export default function Experience()
         gsap.to('.htmlScreen iframe', {visibility: 'hidden'})
     }, [])
 
-    // Display content depending on
+    // Display websites depending on
     // the window's width size
     useEffect(() =>
     {
@@ -87,7 +87,9 @@ export default function Experience()
 
 
         if(window.innerWidth < 800)
-        window.location.replace('https://hicham-zaadla.vercel.app/');
+            window.location.replace('https://hicham-zaadla.vercel.app/');
+        else
+            window.location.replace('https://3d-zaadla.vercel.app/');
     }, [width])
 
     return <>
