@@ -111,7 +111,6 @@ export default function Experience()
             {!isOpen && <Html
                 wrapperClass='tap'
                 position={[0, 0.7, 0]}
-                onClick={open}
             >
                 Tap
             </Html>}
