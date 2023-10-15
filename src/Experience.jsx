@@ -75,10 +75,12 @@ export default function Experience()
     useLayoutEffect(() =>
     {
         if (HtmlRef.current)
-        const ctx = gsap.context(() =>
-            {
-                const hideAnimation = gsap.to('.htmlScreen iframe', {visibility: 'hidden'})   
-            })
+        {
+            const ctx = gsap.context(() =>
+                {
+                    const hideAnimation = gsap.to('.htmlScreen iframe', {visibility: 'hidden'})   
+                })  
+        }
 
         return () =>
             {
