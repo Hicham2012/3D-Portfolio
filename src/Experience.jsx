@@ -88,7 +88,12 @@ export default function Experience()
 
     return <>
         <Background />
-        <Environment preset='city' blur={1} />
+        <Environment
+            preset='city'
+            blur={1}
+        >
+            <Background />
+        </Environment>
         <Sparkles
             size={7}
             scale={[ 9, 8, 4 ]}
