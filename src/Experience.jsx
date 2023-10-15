@@ -1,7 +1,7 @@
 import {  Environment, Html, PresentationControls, Sparkles, useGLTF } from '@react-three/drei'
 import { useFrame, useThree } from '@react-three/fiber';
 import gsap from 'gsap';
-import { useState, useEffect, useRef, useLayoutEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import Background from './Background';
 
 export default function Experience()
@@ -72,20 +72,10 @@ export default function Experience()
         }
     }
 
-    useLayoutEffect(() =>
+    useEffect(() =>
     {
         if (HtmlRef.current)
-        {
-            const ctx = gsap.context(() =>
-                {
-                    const hideAnimation = gsap.to('.htmlScreen iframe', {visibility: 'hidden'})   
-                })  
-        }
-
-        return () =>
-            {
-                ctx.revert()
-            }
+            gsap.to('.htmlScreen iframe', {visibility: 'hidden'})
     }, [])
 
     // Display websites depending on
