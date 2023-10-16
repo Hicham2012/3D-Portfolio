@@ -90,6 +90,7 @@ export default function Experience()
         <Background />
         <Environment
             preset='city'
+            resolution={256}
             blur={1}
         >
             <Background />
