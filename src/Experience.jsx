@@ -1,13 +1,14 @@
 import {  Environment, Html, PresentationControls, Sparkles, useGLTF } from '@react-three/drei'
 import { useFrame, useThree } from '@react-three/fiber';
 import gsap from 'gsap';
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import Background from './Background';
 
 export default function Experience()
 {
     const [ width, setWidth ] = useState()
     const [ isOpen, setIsOpen ] = useState(false)
+    const HtmlRef = useRef()
 
     const macbook = useGLTF('https://vazxmixjsiawhamofees.supabase.co/storage/v1/object/public/models/macbook/model.gltf')
     const camera = useThree((state) => state.camera)
@@ -65,18 +66,13 @@ export default function Experience()
             setIsOpen(true)
             animation.to(macbook.scene.rotation, {x: 0, y: Math.PI * 2, z: 0, duration: 2, ease: 'power1.inOut'})
             animation.to(x, {x: 1.3105023838474816, y: 0, z: 0, duration: 3, ease: 'power3.inOut'}, 1)
-            animation.to('.htmlScreen iframe', {visibility: 'visible'})
+            animation.to(HtmlRef.current, {visibility: 'visible'})
             animation.to(camera.position, {x: 0, y: 1.7, z: 1.2, duration: 2, ease: 'power3.inOut'}, "+=1")
             animation.to(camera.rotation, {x: 0.02, y: 0, z: 0, duration: 2, ease: 'power3.inOut'}, "-=2")
         }
     }
 
-    useEffect(() =>
-    {
-        gsap.to('.htmlScreen iframe', {visibility: 'hidden'})
-    }, [])
-
-    // Display content depending on
+    // Display websites depending on
     // the window's width size
     useEffect(() =>
     {
@@ -87,12 +83,25 @@ export default function Experience()
 
 
         if(window.innerWidth < 800)
-        window.location.replace('https://hicham-zaadla.vercel.app/');
+            window.location.replace('https://hicham-zaadla.vercel.app/');
     }, [width])
 
     return <>
         <Background />
-        <Environment preset='city' blur={1} />
+        <Environment
+            // resolution={256}
+            blur={1}
+            files={[
+                './envir/px.png',
+                './envir/nx.png',
+                './envir/py.png',
+                './envir/ny.png',
+                './envir/pz.png',
+                './envir/nz.png'
+            ]}
+        >
+            <Background />
+        </Environment>
         <Sparkles
             size={7}
             scale={[ 9, 8, 4 ]}
@@ -102,7 +111,6 @@ export default function Experience()
             count={50}
         />
         <PresentationControls
-            global
             rotation={[0.13, 0, 0]}
             polar={[-0.2, 0.2]}
             azimuth={[-0.2, 0.2]}
@@ -130,8 +138,12 @@ export default function Experience()
                     onMouseOut={() => console.log('entered')}
                 />
                 <Html
+                    ref={HtmlRef}
                     transform
                     wrapperClass='htmlScreen'
+                    style={{
+                        visibility: 'hidden'
+                    }}
                     distanceFactor={1.17}
                     position={[0, 1.54, -1.85]}
                     rotation-x={-0.255}
