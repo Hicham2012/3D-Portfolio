@@ -99,6 +99,7 @@ export default function Experience()
                 './envir/pz.png',
                 './envir/nz.png'
             ]}
+
         >
             <Background />
         </Environment>
