@@ -10,7 +10,7 @@ export default function Experience()
     const [ isOpen, setIsOpen ] = useState(false)
     const HtmlRef = useRef()
 
-    const macbook = useGLTF('https://vazxmixjsiawhamofees.supabase.co/storage/v1/object/public/models/macbook/model.gltf')
+    const macbook = useGLTF('https://threejs-journey.com/resources/models/macbook_model.gltf')
     const camera = useThree((state) => state.camera)
     // macbook.scene.rotation.set(0, 3, 0)
     // macbook initial setup
